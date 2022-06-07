@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import cv2
 from keras.models import load_model
 import numpy as np
+import os
 
 app = Flask(__name__)
 
@@ -42,7 +43,8 @@ def after():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 # from waitress import serve
 #     serve(app, host="0.0.0.0", port=8080)
